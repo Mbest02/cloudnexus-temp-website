@@ -7,17 +7,68 @@
   <!-- ============================================================
        SEO
        ============================================================ -->
-  <title>CloudNexus | Cybersecurity, AI &amp; Managed IT Services</title>
+  <title>Managed IT &amp; Cybersecurity Services Louisville KY | CloudNexus</title>
   <meta
     name="description"
-    content="CloudNexus helps businesses protect their technology and modernize operations with practical cybersecurity, AI integration, and managed IT services. Call 502-440-1380." />
+    content="CloudNexus provides managed IT services, cybersecurity, Microsoft 365 support, AI integration, network solutions and technology consulting for businesses in Louisville, Kentucky." />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#050807" />
 
-  <!-- Open Graph (optional social preview) -->
-  <meta property="og:title" content="CloudNexus | Cybersecurity, AI &amp; Managed IT Services" />
-  <meta property="og:description" content="Practical cybersecurity, AI integration, and managed IT services for businesses." />
+  <!-- Canonical: the production custom domain -->
+  <link rel="canonical" href="https://cloudnexusit.com/" />
+
+  <!-- Open Graph (social preview) -->
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="CloudNexus | Managed IT &amp; Cybersecurity Services" />
+  <meta property="og:description" content="Managed IT services, cybersecurity, Microsoft 365 support, AI integration, and technology consulting for businesses in Louisville, Kentucky." />
+  <meta property="og:url" content="https://cloudnexusit.com/" />
+  <meta property="og:image" content="https://cloudnexusit.com/logo.png" />
+  <meta property="og:image:alt" content="CloudNexus logo" />
+  <meta property="og:site_name" content="CloudNexus" />
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="CloudNexus | Managed IT &amp; Cybersecurity Services" />
+  <meta name="twitter:description" content="Managed IT services, cybersecurity, Microsoft 365 support, and AI integration for businesses in Louisville, Kentucky." />
+  <meta name="twitter:image" content="https://cloudnexusit.com/logo.png" />
+
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- ============================================================
+       LOCAL BUSINESS STRUCTURED DATA (JSON-LD)
+       Only verified company information is included below.
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CloudNexus",
+    "url": "https://cloudnexusit.com/",
+    "logo": "https://cloudnexusit.com/logo.png",
+    "image": "https://cloudnexusit.com/logo.png",
+    "description": "CloudNexus provides managed IT services, cybersecurity, Microsoft 365 support, AI integration, network solutions and technology consulting for businesses in Louisville, Kentucky.",
+    "telephone": "+1-502-440-1380",
+    "email": "support@cloudnexusit.com",
+    "sameAs": [
+      "https://www.facebook.com/cloudnexusit/",
+      "https://www.linkedin.com/company/cloudnexus-technologies"
+    ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Louisville",
+        "containedInPlace": {
+          "@type": "State",
+          "name": "Kentucky"
+        }
+      },
+      {
+        "@type": "State",
+        "name": "Kentucky"
+      }
+    ]
+  }
+  </script>
 
   <style>
     /* ============================================================
@@ -214,14 +265,25 @@
       color: var(--green);
       margin-bottom: 14px;
     }
-    .eyebrow::before { content: "// "; color: var(--green-dim); }
+    /* Render the " // " separator inside the eyebrow in a dimmer green */
+    .eyebrow .sep { color: var(--green-dim); }
 
     h2 {
-      margin: 0 0 20px;
+      margin: 0 0 12px;
       font-size: clamp(1.5rem, 3.5vw, 2.1rem);
       line-height: 1.25;
       letter-spacing: -0.01em;
       color: var(--text);
+    }
+    /* Supporting phrase beneath each section H2 */
+    .section-lede {
+      margin: 0 auto 22px;
+      max-width: 68ch;
+      font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--green-bright);
+      text-shadow: 0 0 20px rgba(139, 198, 63, 0.18);
     }
     .section p {
       max-width: 68ch;
@@ -455,6 +517,23 @@
     }
     .contact-email a { color: var(--green-bright); text-decoration: none; }
     .contact-email a:hover { color: #fff; text-decoration: underline; }
+    .contact-address {
+      margin-top: 20px;
+      font-style: normal;                 /* override default <address> italics */
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      color: var(--text-dim);
+    }
+    .contact-address .addr-label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .contact-address .locality { color: var(--text-soft); }
 
     /* ============================================================
        FOOTER
@@ -530,9 +609,9 @@
        ============================================================ -->
   <header class="site-header">
     <nav class="nav" aria-label="Primary">
-      <a class="nav-logo" href="#top" aria-label="CloudNexus home">
+      <a class="nav-logo" href="#home" aria-label="CloudNexus home">
         <!-- Logo path preserved: logo.png beside index.html -->
-        <img src="logo.png" alt="CloudNexus logo" />
+        <img src="logo.png" alt="CloudNexus logo" width="527" height="70" />
       </a>
 
       <button class="nav-toggle" id="navToggle"
@@ -547,6 +626,7 @@
       </button>
 
       <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
         <li><a href="#cybersecurity">Cybersecurity</a></li>
         <li><a href="#ai">AI Integration</a></li>
         <li><a href="#managed-it">Managed IT</a></li>
@@ -560,23 +640,25 @@
     <!-- ============================================================
          1. HERO
          ============================================================ -->
-    <section class="hero" id="top">
+    <section class="hero" id="home">
       <div class="hero-inner">
-        <!-- COMPANY LOGO (path preserved: logo.png) -->
-        <img class="hero-logo" src="logo.png" alt="CloudNexus logo" />
+        <!-- COMPANY LOGO (path preserved: logo.png). Above the fold: load eagerly. -->
+        <img class="hero-logo" src="logo.png" alt="CloudNexus logo"
+             width="527" height="70" fetchpriority="high" />
 
         <!-- (4) COMPANY NAME is represented by the logo above.
              MAIN HEADING — the single H1 for the page: -->
-        <h1>Technology That Moves Your Business Forward</h1>
+        <h1>Managed IT, Cybersecurity &amp; AI Solutions for Louisville Businesses</h1>
 
         <p class="hero-sub">Cybersecurity &bull; Artificial Intelligence &bull; Managed IT Services</p>
 
         <!-- (3) HERO DESCRIPTION — edit to change intro copy -->
         <p class="hero-desc">
-          CloudNexus helps businesses protect their technology, modernize their
-          operations, and get more from IT. From cybersecurity and managed
-          technology services to practical AI integration, we provide solutions
-          designed around the way your business works.
+          CloudNexus helps businesses secure their technology, improve
+          reliability, and modernize their operations. From managed IT and
+          cybersecurity to Microsoft&nbsp;365, networks, cloud solutions, and
+          practical AI integration, we provide technology solutions built around
+          your business.
         </p>
 
         <!-- Terminal-style system status message -->
@@ -614,12 +696,36 @@
     </section>
 
     <!-- ============================================================
-         2. CYBERSECURITY
+         2. ABOUT
+         ============================================================ -->
+    <section class="section" id="about">
+      <div class="container">
+        <span class="eyebrow">About<span class="sep"> // </span>Louisville, KY</span>
+        <h2>Louisville IT Solutions Built Around Your Business</h2>
+        <p>
+          CloudNexus is a Louisville, Kentucky technology company helping
+          businesses manage, secure, and modernize their IT environments. We
+          provide managed IT services, cybersecurity solutions, Microsoft&nbsp;365
+          support, network and cloud services, backup and disaster recovery,
+          technology consulting, and AI integration.
+        </p>
+        <p>
+          Our approach starts with understanding how technology supports your
+          organization. We focus on practical solutions that improve security,
+          reliability, productivity, and long-term technology planning without
+          introducing unnecessary complexity.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. CYBERSECURITY
          ============================================================ -->
     <section class="section" id="cybersecurity">
       <div class="container">
-        <span class="eyebrow">Cybersecurity</span>
-        <h2>Protect Your Business. Secure Your Future.</h2>
+        <span class="eyebrow">Security<span class="sep"> // </span>Protect</span>
+        <h2>Cybersecurity Services for Louisville Businesses</h2>
+        <h3 class="section-lede">Protect Your Business. Secure Your Future.</h3>
         <p>
           Cyber threats continue to evolve, and protecting your business requires
           more than antivirus software. CloudNexus helps businesses strengthen
@@ -627,11 +733,11 @@
           solutions designed around their technology, users, and operations.
         </p>
         <p>
-          From endpoint protection and network security to Microsoft 365 security,
-          vulnerability reduction, backup strategy, and security best practices, we
-          help identify weaknesses before they become costly problems. Our goal is
-          to provide businesses with enterprise-grade protection without unnecessary
-          complexity.
+          From endpoint protection and network security to Microsoft&nbsp;365
+          security, vulnerability reduction, backup strategy, and security best
+          practices, we help organizations identify weaknesses and reduce
+          unnecessary risk. Our goal is to provide strong business security
+          without unnecessary complexity.
         </p>
         <ul class="features">
           <li>Network &amp; Firewall Security</li>
@@ -648,20 +754,21 @@
          ============================================================ -->
     <section class="section" id="ai">
       <div class="container">
-        <span class="eyebrow">AI Integration</span>
-        <h2>Put Artificial Intelligence to Work for Your Business.</h2>
+        <span class="eyebrow">AI<span class="sep"> // </span>Automate</span>
+        <h2>AI Integration &amp; Business Automation</h2>
+        <h3 class="section-lede">Put Artificial Intelligence to Work for Your Business.</h3>
         <p>
           Artificial intelligence can do far more than generate text. When
-          implemented correctly, AI can help businesses automate repetitive
+          implemented thoughtfully, AI can help businesses automate repetitive
           processes, organize information, improve customer experiences, analyze
           data, and give employees better tools to work efficiently.
         </p>
         <p>
           CloudNexus helps businesses identify practical opportunities for AI and
-          integrate solutions that complement their existing workflows. Rather than
-          adopting AI simply because it's new, we focus on implementations that
-          solve real business problems while considering security, privacy, and
-          responsible data handling.
+          integrate solutions that complement existing workflows. Rather than
+          adopting AI simply because it is new, we focus on implementations that
+          address real business needs while considering security, privacy,
+          governance, and responsible data handling.
         </p>
         <ul class="features">
           <li>AI Strategy &amp; Consulting</li>
@@ -678,19 +785,22 @@
          ============================================================ -->
     <section class="section" id="managed-it">
       <div class="container">
-        <span class="eyebrow">Managed IT Services</span>
-        <h2>Reliable Technology. Responsive Support.</h2>
+        <span class="eyebrow">IT<span class="sep"> // </span>Manage</span>
+        <h2>Managed IT Services &amp; IT Support in Louisville</h2>
+        <h3 class="section-lede">Reliable Technology. Responsive Support.</h3>
         <p>
           Your technology should help your business operate&mdash;not become another
           problem to manage. CloudNexus provides managed IT services and technical
-          support designed to keep your systems secure, reliable, and productive.
+          support designed to keep business systems secure, reliable, and
+          productive.
         </p>
         <p>
           We support the technology businesses depend on every day, including
-          computers, servers, Microsoft 365, networks, Wi-Fi, firewalls, cloud
-          services, backups, and user support. Whether you need ongoing IT
-          management or experienced technical guidance for a specific project,
-          CloudNexus provides a practical technology partner for your business.
+          computers, servers, Microsoft&nbsp;365, business networks, Wi-Fi,
+          firewalls, cloud services, backups, and user support. Whether an
+          organization needs ongoing IT management or experienced technical
+          guidance for a specific project, CloudNexus provides practical technology
+          support built around its business requirements.
         </p>
         <ul class="features">
           <li>IT Support</li>
@@ -709,8 +819,8 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="contact-card">
-          <span class="eyebrow">Contact</span>
-          <h2>Let's Talk Technology.</h2>
+          <span class="eyebrow">Contact<span class="sep"> // </span>Louisville, KY</span>
+          <h2>Let's Talk Technology</h2>
           <p>
             Whether you're looking to strengthen your cybersecurity, explore how AI
             can improve your business, or need a reliable IT partner, CloudNexus is
@@ -740,6 +850,11 @@
           <p class="contact-email">
             <a href="mailto:support@cloudnexusit.com">support@cloudnexusit.com</a>
           </p>
+
+          <address class="contact-address">
+            <span class="addr-label">Serving</span>
+            <span class="locality">Louisville, Kentucky</span> &amp; surrounding areas
+          </address>
         </div>
       </div>
     </section>
