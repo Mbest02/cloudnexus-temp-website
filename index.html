@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       SEO
+       ============================================================ -->
+  <title>CloudNexus | Website Coming Soon</title>
+  <meta
+    name="description"
+    content="The CloudNexus website is currently being updated. We're still open and ready to help — contact us by phone at 502-440-1380 or by email." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#050807" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — CloudNexus brand (dark / Matrix theme)
+       ============================================================ */
+    :root {
+      --green:        #8BC63F;   /* logo green (brand)         */
+      --green-bright: #A6E24A;   /* brighter green for glow    */
+      --green-dim:    #4f7a24;   /* muted green for borders    */
+      --bg:           #050807;   /* near-black background      */
+      --bg-card:      rgba(10, 16, 12, 0.72); /* glassy panel  */
+      --text:         #ffffff;   /* primary text (white)       */
+      --text-soft:    #b6c9a8;   /* secondary greenish-white   */
+      --ring:         #A6E24A;   /* keyboard focus ring        */
+      --radius:       18px;
+      --mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo",
+              "Courier New", monospace;
+    }
+
+    /* ============================================================
+       BASE / RESET
+       ============================================================ */
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont,
+                   "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: var(--bg);
+      overflow-x: hidden;
+    }
+
+    /* Matrix digital-rain canvas sits behind everything */
+    #matrix {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: block;
+    }
+
+    /* Vignette + green glow over the rain to keep text readable */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(1100px 700px at 50% 40%, rgba(139, 198, 63, 0.10), transparent 60%),
+        radial-gradient(1200px 900px at 50% 50%, transparent 30%, rgba(5, 8, 7, 0.85) 100%);
+    }
+
+    /* ============================================================
+       LAYOUT — vertically centered on desktop
+       ============================================================ */
+    .page {
+      position: relative;
+      z-index: 2;
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 640px;
+      background: var(--bg-card);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(139, 198, 63, 0.35);
+      border-radius: var(--radius);
+      box-shadow:
+        0 0 0 1px rgba(139, 198, 63, 0.06),
+        0 24px 60px -24px rgba(0, 0, 0, 0.85),
+        0 0 60px -20px rgba(139, 198, 63, 0.35);
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    /* ============================================================
+       COMPANY LOGO — responsive, aspect ratio preserved
+       ============================================================ */
+    .logo {
+      display: block;
+      margin: 0 auto 26px;
+      max-width: 300px;
+      width: 72%;
+      height: auto;
+      filter: drop-shadow(0 0 14px rgba(139, 198, 63, 0.45));
+    }
+
+    /* ============================================================
+       "COMING SOON" INDICATOR (badge)
+       ============================================================ */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      margin-bottom: 26px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-bright);
+      background: rgba(139, 198, 63, 0.08);
+      border: 1px solid rgba(139, 198, 63, 0.35);
+      border-radius: 999px;
+    }
+    .badge::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green-bright);
+      box-shadow: 0 0 10px 2px rgba(166, 226, 74, 0.8);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   transform: scale(1);   }
+      50%      { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(1.7rem, 4.5vw, 2.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      text-shadow: 0 0 24px rgba(139, 198, 63, 0.25);
+    }
+
+    .message {
+      margin: 0 auto 34px;
+      max-width: 48ch;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      color: var(--text-soft);
+    }
+
+    /* ============================================================
+       PHONE — one of the most prominent elements
+       ============================================================ */
+    .phone-label {
+      display: block;
+      margin-bottom: 6px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+    .phone-number {
+      display: inline-block;
+      margin-bottom: 30px;
+      font-family: var(--mono);
+      font-size: clamp(1.9rem, 6vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--green-bright);
+      text-decoration: none;
+      text-shadow: 0 0 18px rgba(139, 198, 63, 0.55);
+    }
+    .phone-number:hover { color: #ffffff; }
+
+    /* ============================================================
+       ACTION BUTTONS
+       ============================================================ */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 58px;
+      padding: 16px 30px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.06s ease, background-color 0.2s ease,
+                  box-shadow 0.2s ease, color 0.2s ease;
+    }
+
+    /* Primary "Call Us" button — large & easy to tap */
+    .btn-primary {
+      color: #06210a;
+      background: var(--green);
+      box-shadow: 0 0 26px -6px rgba(139, 198, 63, 0.8);
+    }
+    .btn-primary:hover {
+      background: var(--green-bright);
+      box-shadow: 0 0 34px -4px rgba(166, 226, 74, 0.95);
+    }
+    .btn-primary:active { transform: translateY(1px); }
+
+    /* Secondary "Email Us" button */
+    .btn-secondary {
+      color: var(--green-bright);
+      background: transparent;
+      border: 2px solid rgba(139, 198, 63, 0.55);
+    }
+    .btn-secondary:hover {
+      border-color: var(--green-bright);
+      background: rgba(139, 198, 63, 0.10);
+      color: #ffffff;
+    }
+    .btn-secondary:active { transform: translateY(1px); }
+
+    .icon { width: 20px; height: 20px; flex: none; }
+
+    /* ============================================================
+       CONTACT DETAILS (email)
+       ============================================================ */
+    .contact {
+      display: grid;
+      gap: 12px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(139, 198, 63, 0.20);
+      font-style: normal;
+      color: var(--text-soft);
+    }
+    .contact a {
+      color: var(--green-bright);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: var(--mono);
+      word-break: break-word;
+    }
+    .contact a:hover { text-decoration: underline; color: #ffffff; }
+    .contact-line { font-size: 0.98rem; }
+    .contact-line strong { color: var(--text); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      text-align: center;
+      padding: 24px 20px 32px;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--text-soft);
+    }
+
+    /* ============================================================
+       ACCESSIBILITY — visible keyboard focus
+       ============================================================ */
+    a:focus-visible,
+    .btn:focus-visible {
+      outline: 3px solid var(--ring);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    /* ============================================================
+       RESPONSIVE — tablets & phones
+       ============================================================ */
+    @media (max-width: 560px) {
+      .card { padding: 36px 22px; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 360px) {
+      .card { padding: 30px 16px; }
+    }
+
+    /* Respect reduced-motion: hide the animated rain & pulse */
+    @media (prefers-reduced-motion: reduce) {
+      #matrix { display: none; }
+      .btn { transition: none; }
+      .badge::before { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Matrix digital-rain background (decorative) -->
+  <canvas id="matrix" aria-hidden="true"></canvas>
+
+  <main class="page">
+    <section class="card" aria-labelledby="main-heading">
+
+      <!-- ============================================================
+           COMPANY LOGO
+           Replace logo.png in this same folder to change the logo.
+           ============================================================ -->
+      <img
+        class="logo"
+        src="logo.png"
+        alt="CloudNexus logo" />
+
+      <!-- Coming Soon indicator -->
+      <span class="badge">Website Under Construction</span>
+
+      <!-- ============================================================
+           MAIN HEADING
+           ============================================================ -->
+      <h1 id="main-heading">We're Building Something New</h1>
+
+      <!-- ============================================================
+           (3) MAIN MESSAGE — edit the text below to change it.
+           ============================================================ -->
+      <p class="message">
+        Our website is currently being updated. CloudNexus is still open and
+        ready to assist you. Please contact us using the information below.
+      </p>
+
+      <!-- ============================================================
+           (1) COMPANY PHONE NUMBER
+           Change the number in BOTH the tel: link and the visible text:
+             • href="tel:+15024401380"  (digits only, keep +1)
+             • the visible text 502-440-1380
+           ============================================================ -->
+      <span class="phone-label">Call us now</span>
+      <a class="phone-number" href="tel:+15024401380">502-440-1380</a>
+
+      <!-- Action buttons -->
+      <div class="actions">
+        <!-- Call Us button (uses the same phone number as above) -->
+        <a class="btn btn-primary" href="tel:+15024401380" aria-label="Call CloudNexus at 502-440-1380">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M6.62 10.79a15.53 15.53 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.56 1 1 0 01-.24 1.02l-2.21 2.21z"/>
+          </svg>
+          Call Us
+        </a>
+
+        <!-- ============================================================
+             (2) COMPANY EMAIL
+             Change the address after "mailto:" to update the email
+             the visitor's mail app opens to.
+             ============================================================ -->
+        <a class="btn btn-secondary" href="mailto:support@cloudnexusit.com" aria-label="Email CloudNexus">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5z"/>
+          </svg>
+          Email Us
+        </a>
+      </div>
+
+      <!-- Contact details -->
+      <address class="contact">
+        <div class="contact-line"><strong>CloudNexus</strong></div>
+        <!-- ============================================================
+             (2) COMPANY EMAIL (same address as the Email Us button)
+             ============================================================ -->
+        <div class="contact-line">
+          <a href="mailto:support@cloudnexusit.com">support@cloudnexusit.com</a>
+        </div>
+      </address>
+
+    </section>
+  </main>
+
+  <!-- ============================================================
+       (4) COPYRIGHT — update the company name/year if needed.
+       ============================================================ -->
+  <footer>
+    &copy; 2026 CloudNexus. All rights reserved.
+  </footer>
+
+  <!-- ============================================================
+       Matrix digital-rain effect (decorative, minimal vanilla JS).
+       Purely visual — the page is fully usable without it.
+       ============================================================ -->
+  <script>
+    (function () {
+      // Skip the animation for users who prefer reduced motion.
+      var reduce = window.matchMedia &&
+                   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) return;
+
+      var canvas = document.getElementById("matrix");
+      if (!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext("2d");
+
+      var glyphs = "アカサタナハマヤラワ0123456789ABCDEFｦｱｳｴｵｶｷｸ<>*#{}[]/\\".split("");
+      var fontSize = 16;
+      var columns, drops;
+
+      function setup() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        columns = Math.floor(canvas.width / fontSize);
+        drops = [];
+        for (var i = 0; i < columns; i++) {
+          drops[i] = Math.floor(Math.random() * -50);
+        }
+      }
+
+      function draw() {
+        // Translucent black fill creates the fading trail.
+        ctx.fillStyle = "rgba(5, 8, 7, 0.08)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.font = fontSize + "px monospace";
+        for (var i = 0; i < drops.length; i++) {
+          var char = glyphs[Math.floor(Math.random() * glyphs.length)];
+          var x = i * fontSize;
+          var y = drops[i] * fontSize;
+
+          // Lead glyph brighter, trail in brand green.
+          ctx.fillStyle = Math.random() > 0.975 ? "#d8ffb0" : "#8BC63F";
+          ctx.fillText(char, x, y);
+
+          if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+
+      setup();
+      var timer = setInterval(draw, 55);
+
+      // Keep the canvas crisp on resize / orientation change.
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setup, 150);
+      });
+    })();
+  </script>
+</body>
+</html>
